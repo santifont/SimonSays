@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,10 +8,11 @@ public class GameManager : MonoBehaviour
 {
     GameObject[] buttons;
     TextMeshProUGUI mainText;
+    List<int> listaDeColores;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        buttons = GameObject.FindGameObjectsWithTag("Button");
+        buttons  = GameObject.FindGameObjectsWithTag("Button");
         mainText = GameObject.Find("MainText").GetComponent<TextMeshProUGUI>();
         StartCoroutine(SimonSays());
     }
@@ -20,7 +22,6 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
 
     IEnumerator SimonSays()
     {
@@ -34,7 +35,6 @@ public class GameManager : MonoBehaviour
         CanvasOn();
         mainText.text = "Player's turn!";
         yield return null;
-
     }
 
     private void CanvasOn()
