@@ -339,8 +339,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 446526205}
-        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+      - m_Target: {fileID: 446526204}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Blue
         m_Mode: 1
         m_Arguments:
@@ -526,7 +526,6 @@ GameObject:
   m_Component:
   - component: {fileID: 446526203}
   - component: {fileID: 446526204}
-  - component: {fileID: 446526205}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -561,18 +560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae226354e6d1cce43afdedceaf88637b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
---- !u!114 &446526205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446526202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67749f822eaeb4041a4d6dda4c5f6832, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Buttons
 --- !u!1 &704347468
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,8 +915,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 446526205}
-        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+      - m_Target: {fileID: 446526204}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Green
         m_Mode: 1
         m_Arguments:
@@ -1432,8 +1419,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 446526205}
-        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+      - m_Target: {fileID: 446526204}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Red
         m_Mode: 1
         m_Arguments:
@@ -1912,8 +1899,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 446526205}
-        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+      - m_Target: {fileID: 446526204}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Yellow
         m_Mode: 1
         m_Arguments:
