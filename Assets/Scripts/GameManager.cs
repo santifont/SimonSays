@@ -8,56 +8,17 @@ public class GameManager : MonoBehaviour
 {
     GameObject[]    buttons;
     TextMeshProUGUI mainText;
-    string[] coloursArray = {"Red", "Green", "Blue", "Yellow"};
-    int round    = 1;
-    int maxRounds = 10;
-    int[] colorOrder = new int[11]; // Index 0 is not used, it's from 1 to 10 only. Not 0 to 10!!!
-    bool game = true;
-    bool turn = true; // true -> player, false -> ai
+    string[] colorArray = new string[21]; // 1 - 20 = 0 excluded
+    int contador = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         buttons  = GameObject.FindGameObjectsWithTag("Button");
         mainText = GameObject.Find("MainText").GetComponent<TextMeshProUGUI>();
-        StartCoroutine(SimonSays());
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    IEnumerator SimonSays()
-    {
-        CanvasOff();
-        // Welcome message
-        mainText.text = "Welcome, player from outside this world.";
-        yield return new WaitForSeconds(1f);
-        mainText.text = "Get ready for a fierce battle against the computer in" + "\n Simon Says";
-        yield return new WaitForSeconds(1f);
-        mainText.text = "This game will take " + maxRounds + " rounds.";
-        yield return new WaitForSeconds(1f);
-        while (game = true)
-        {
-            // Player's turn
-            mainText.text = "Player's turn!" + "\n Round " + round;
-            CanvasOn();
-            while (turn == true)
-            {
-                yield return null;
-            }
-            CanvasOff();
-            mainText.text = "The AI will repeat" + "\nall the colours you chose";
-            yield return new WaitForSeconds(2f);
-
-            for (int i = round;  i <= maxRounds; i++)
-            {
-
-            }
-        }
-    }
 
     private void CanvasOn()
     {
@@ -77,34 +38,63 @@ public class GameManager : MonoBehaviour
 
     public void Red()
     {
-        Debug.Log("Red");
-        //colorArray[0];
-        colorOrder[round] = 0;
-        turn = false;
+        colorArray[contador] = "Red";
+        contador++;
+        if (contador > 20)
+        {
+            contador = 20;
+            StartCoroutine(Warning());
+        }
+        Debug.Log("Red" + " " + contador);
     }
 
     public void Green()
     {
-        Debug.Log("Green");
-        //colorArray[1];
-        colorOrder[round] = 1;
-        turn = false;
+        colorArray[contador] = "Green";
+        contador++;
+        if (contador > 20)
+        {
+            contador = 20;
+            StartCoroutine(Warning());
+        }
+        Debug.Log("Green" + " " + contador);
     }
 
     public void Blue()
     {
-        Debug.Log("Blue");
-        //colorArray[2];
-        colorOrder[round] = 2;
-        turn = false;
+        colorArray[contador] = "Blue";
+        contador++;
+        if (contador > 20)
+        {
+            contador = 20;
+            StartCoroutine(Warning());
+        }
+        Debug.Log("Blue" + " " + contador);
     }
 
     public void Yellow()
     {
-        Debug.Log("Yellow");
-        //colorArray[3];
-        colorOrder[round] = 3;
-        turn = false;
+        colorArray[contador] = "Yellow";
+        contador++;
+        if (contador > 20)
+        {
+            contador = 20;
+            StartCoroutine(Warning());
+        }
+        Debug.Log("Yellow" + " " + contador);
+    }
+
+    public void FinishButton()
+    {
+        Debug.Log("Finish");
+    }
+
+    IEnumerator Warning()
+    {
+        CanvasOff();
+        mainText.text = "Counter is full. Clic on Finish";
+        yield return new WaitForSeconds(2f);
+        CanvasOn();
     }
 
     public void StartGame()
