@@ -9,13 +9,21 @@ public class GameManager : MonoBehaviour
     GameObject[]    buttons;
     TextMeshProUGUI mainText;
     string[] colorArray = new string[21]; // 1 - 20 = 0 excluded
-    int contador = 0;
+    int counter = 0;
+    int repeat = 1;
+    private GameObject titleCanvas;
+    private GameObject mainCanvas;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        buttons  = GameObject.FindGameObjectsWithTag("Button");
-        mainText = GameObject.Find("MainText").GetComponent<TextMeshProUGUI>();
+        titleCanvas = GameObject.Find("TitleScreen");
+        mainCanvas  = GameObject.Find("Canvas");
+        buttons     = GameObject.FindGameObjectsWithTag("Button");
+        mainText    = GameObject.Find("MainText").GetComponent<TextMeshProUGUI>();
+
+        mainCanvas.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -38,55 +46,71 @@ public class GameManager : MonoBehaviour
 
     public void Red()
     {
-        colorArray[contador] = "Red";
-        contador++;
-        if (contador > 20)
+        counter++;
+        if (counter < 21)
         {
-            contador = 20;
+            colorArray[counter] = "Red";
+        }
+        if (counter > 20)
+        {
+            counter = 20;
             StartCoroutine(Warning());
         }
-        Debug.Log("Red" + " " + contador);
+        Debug.Log("Red" + " " + counter);
     }
 
     public void Green()
     {
-        colorArray[contador] = "Green";
-        contador++;
-        if (contador > 20)
+        counter++;
+        if (counter < 21)
         {
-            contador = 20;
+            colorArray[counter] = "Green";
+        }
+        if (counter > 20)
+        {
+            counter = 20;
             StartCoroutine(Warning());
         }
-        Debug.Log("Green" + " " + contador);
+        Debug.Log("Green" + " " + counter);
     }
 
     public void Blue()
     {
-        colorArray[contador] = "Blue";
-        contador++;
-        if (contador > 20)
+        counter++;
+        if (counter < 21)
         {
-            contador = 20;
+            colorArray[counter] = "Blue";
+        }        
+        if (counter > 20)
+        {
+            counter = 20;
             StartCoroutine(Warning());
         }
-        Debug.Log("Blue" + " " + contador);
+        Debug.Log("Blue" + " " + counter);
     }
 
     public void Yellow()
     {
-        colorArray[contador] = "Yellow";
-        contador++;
-        if (contador > 20)
+        counter++;
+        if (counter < 21)
         {
-            contador = 20;
+            colorArray[counter] = "Yellow";
+        }
+        if (counter > 20)
+        {
+            counter = 20;
             StartCoroutine(Warning());
         }
-        Debug.Log("Yellow" + " " + contador);
+        Debug.Log("Yellow" + " " + counter);
     }
 
     public void FinishButton()
     {
         Debug.Log("Finish");
+        if (counter >= 1)
+        {
+            StartCoroutine(SimonRepeats());
+        }
     }
 
     IEnumerator Warning()
@@ -97,9 +121,59 @@ public class GameManager : MonoBehaviour
         CanvasOn();
     }
 
+    IEnumerator SimonRepeats()
+    {
+        CanvasOff();
+        mainText.text =
+            "Simon is going to" +
+            "\n repeat the colors you pressed.";
+        yield return new WaitForSeconds(2f);
+        while (repeat <= counter)
+        {
+            mainText.text = "Color number " + repeat + 
+                "\n"  + colorArray[repeat];
+            repeat++;
+            yield return new WaitForSeconds(1f);
+        }
+
+        // RESETTING VALUES
+        counter = 0;
+        repeat = 1;
+
+        mainText.text = " Thanks for playing!";
+        yield return new WaitForSeconds(2f);
+        mainText.text = " Loading Title Screen.";
+        yield return new WaitForSeconds(0.5f);
+        mainText.text = " Loading Title Screen..";
+        yield return new WaitForSeconds(0.5f);
+        mainText.text = " Loading Title Screen...";
+        yield return new WaitForSeconds(0.5f);
+        mainText.text = " Loading Title Screen.";
+        yield return new WaitForSeconds(0.5f);
+        mainText.text = " Loading Title Screen..";
+        yield return new WaitForSeconds(0.5f);
+        mainText.text = " Loading Title Screen...";
+        yield return new WaitForSeconds(0.5f);
+        // RESET
+        CanvasOn();
+        titleCanvas.SetActive(true);
+        mainCanvas.SetActive(false);
+
+    }
+
     public void StartGame()
     {
-        SceneManager.LoadScene("MainScene");
+        titleCanvas.SetActive(false);
+        mainCanvas.SetActive(true);
+    }
+
+    public void TitleScreen()
+    {
+        counter = 0;
+        repeat = 1;
+        CanvasOn();
+        mainCanvas.SetActive(false);
+        titleCanvas.SetActive(true);
     }
 
     public void ExitGame()
